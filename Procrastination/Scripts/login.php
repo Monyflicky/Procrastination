@@ -85,7 +85,7 @@
          <div class="navbar-collapse collapse">
              <ul class="nav navbar-nav navbar-right">
                  <li class="active"><a href="register.php">Register</a></li>
-                 <li class="active"><a href="logout.php">Sign Out</a></li>
+                 
              </ul>
 
          </div>
