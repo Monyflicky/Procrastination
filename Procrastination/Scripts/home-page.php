@@ -140,14 +140,11 @@ body {
   <div class="main">
       <p id="quote"></p>
       <div class="fakeimg" style="height:200px;">Image</div>
+      <h2>You have the following tasks coming up:</h2>
       <p>Some text..
         <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum  
       </p>
   </div>    
-
-<div class="footer">
-  <h2>Footer</h2>
-</div>
 
 <script>
     //Display a random motivational quote
