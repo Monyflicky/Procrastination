@@ -115,9 +115,9 @@ body {
     <div id = "homeSideNav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">Home</a>
-        <a href="list.php">Lists</a>
+        <a href="list.html">Lists</a>
         <!-- <a href="#">Create New TO-DO List</a> -->
-        <a href="task.php">Generate New Task</a>
+        <a href="task.html">Generate New Task</a>
         <a href="#">Generate a Schedule</a>
         <a href="#">Userboard</a>
         <a href="indexComments.php">Comment Section</a>

@@ -19,14 +19,13 @@
         $row = mysqli_fetch_array($ses_sql);
         $login_session =$row['username'];
         $login_password =$row['password'];
-        $userID =$row['id'];
          
         
 
 
 
 
-        $_SESSION['userID'] = $userID; 
+
 	$_SESSION['login_user'] = $login_session; 
 	$_SESSION['passwordUsed'] = $login_password;
    

@@ -24,11 +24,12 @@ function getComments($db){
 
     while($row = $result->fetch_assoc()){
       $_SESSION['commentId'] = $row['id'];
-         echo "<div class='comment-box'><p>";
+         echo "<div class='well col-xs-7 padding-left-xs'><p>";
            echo $row['username']."<br>";
            echo $row['date']."<br>";
            echo $row['message'];
          echo "</p>
+      <div style='display:inline-block;'>
       <form class='reply-form' method='POST' action='replycomment.php'>
          <input type='hidden' name='id' value='".$row['id']."'>
          <input type='hidden' name='firstname' value='".$row['username']."'>
@@ -46,7 +47,8 @@ function getComments($db){
 			      <input type='hidden' name='date' value='".$row['date']."'>
 			      <input type='hidden' name='message' value='".$row['message']."'>
 			<button>Edit</button>
-		</form>
+    </form>
+    </div>
     </div>";
          getReplies($db);
      }
@@ -99,7 +101,7 @@ function getReplies($db){
     $result= mysqli_query($db,$sql);
 
     while($row = $result->fetch_assoc()){
-      echo "<div class='comment-box' style='left-margin:200px;'><p>";
+      echo "<div><p class='well col-xs-6 col-sm-offset-1'>";
         echo $row['username']."<br>";
         echo $row['time_updated']."<br>";
         echo $row['replied_message'];

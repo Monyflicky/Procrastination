@@ -34,7 +34,7 @@
   </head>
   <body bgcolor = "#FFFFFF">
     
-     <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #72BBED;">
+     <nav class="navbar navbar-default navbar-fixed-top">
          <div class="container">
              <button type="button" class="navbar-toggle" data-toggle="collapse"
                data-target=".navbar-collapse">
@@ -43,10 +43,10 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
              </button>
-             <h1 class="navbar-brand">You can post your  comments below<h1>
+             <h1 class="navbar-brand">You are welcomed to Log In below<h1>
          <div class="navbar-collapse collapse">
              <ul class="nav navbar-nav navbar-right">
-                 <li class="active"><a href="logout.php">Sign Out</a></li>
+                 <li class="active"><a href="register.php">Register</a></li>
 
              </ul>
 
@@ -75,8 +75,7 @@
                    <input type='submit' class='btn btn-default' name='commentSubmit' value='Submit'>
                 </div>
              
-		 </form>";
-		 getComments($db);
+         </form>";
          ?>
          
                 
@@ -86,10 +85,10 @@
         </div>
     </div>
      <!--This is the footer-->
-     <div class="navbar navbar-inverse navbar-fixed-bottom" style="background-color: #AAAAAA;">
+     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container">
             <div class="navbar-text pull-left">
-            <p style="color:black;">Copyright@ Procrastination 2018</p>
+            <p>Copyright@ Procrastination 2018</p>
             </div>
         </div>
      </div>
