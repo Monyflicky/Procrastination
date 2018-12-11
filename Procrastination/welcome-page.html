@@ -24,7 +24,14 @@
 }
 
 .container img {vertical-align: middle;}
-
+   
+.container .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+        
 .container .content {
     position: absolute; /* Position the background text */
     bottom: 0; /* At the bottom. Use top:0 to append it to the top */
@@ -53,37 +60,21 @@ bodyFormat{
 </style>
 
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script> 
-    $(function(){
-            $("titleA").animate({
-                opacity: '0.8',
-                height: '+=100px',
-                width: '98%',
-                fontSize: '70px',
-                padding: '12px'
-            });     
-    });
-</script>    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
 </head> 
 
 <body>
 
-<titleA class ="homeTitle">
-    <p>
-        Website title here
-    </p>
-</titleA>  
-
 <div class="container">
     <img src="img/toDoList.jpg" alt="toDoList" style="width:100%;">
         <div class="content">
-            <bodyFormat>
+            <div class="centered">
+            <bodyFormat>  
                 <h1><a href="Scripts/login.php">Login</a></h1>
                 <h1><a href="Scripts/register.php">Sign Up</a></h1>
-                     <p><b><i><h3>You may delay, but time will not.</i></b></h3> Benjamin Franklin</p>
+                     <p><b><i><h3>"You may delay, but time will not."</i></b></h3>- Benjamin Franklin</p>
             </bodyFormat>
+            </div>
         </div>
 </div>
 
