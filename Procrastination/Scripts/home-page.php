@@ -137,13 +137,33 @@ body {
         <a href="#">Sign Out</a>
     </div>
 
-  <div class="main">
-      <p id="quote"></p>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..
-        <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum  
-      </p>
-  </div>    
+   <div class="main">
+      <p id="quote"></p> 
+      <h2>You have the following tasks coming up:</h2>
+      
+      <?php
+        //include("session.php");
+        $host = "localhost"; 
+        $dbUsername = "root";
+        $dbPassword = "";
+        $dbname = "procrastination";
+        //$userID = $_SESSION['userID'];
+  
+        //create connection
+        $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+
+		$sql= "SELECT taskTitle, dueDate 
+		FROM createtask 
+        ORDER BY dueDate ASC 
+        LIMIT 0,5";   
+
+        $result = $conn->query($sql);
+        
+		while($row = $result->fetch_assoc()){
+                echo "<h4>" . $row['taskTitle'] . " is due on " . $row['dueDate'] . "</i> </h4>"; 
+        }
+    ?>
+  </div>  
 
 <div class="footer">
   <h2>Footer</h2>
