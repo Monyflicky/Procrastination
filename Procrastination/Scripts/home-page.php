@@ -142,24 +142,25 @@ body {
       <h2>You have the following tasks coming up:</h2>
       
       <?php
-        //include("session.php");
         $host = "localhost"; 
         $dbUsername = "root";
         $dbPassword = "";
         $dbname = "procrastination";
-        //$userID = $_SESSION['userID'];
+        $ID = $_SESSION['userID'];
   
         //create connection
         $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 
-		$sql= "SELECT taskTitle, dueDate 
-		FROM createtask 
+		$sql= "SELECT userID, taskTitle, dueDate 
+		FROM createtask
+        WHERE createtask.userID = $ID 
         ORDER BY dueDate ASC 
         LIMIT 0,5";   
 
         $result = $conn->query($sql);
         
 		while($row = $result->fetch_assoc()){
+        
                 echo "<h4>" . $row['taskTitle'] . " is due on " . $row['dueDate'] . "</i> </h4>"; 
         }
     ?>

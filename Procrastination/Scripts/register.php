@@ -16,7 +16,7 @@
        $host = "localhost";
        $dbFirstname = "root";
        $dbPassword = "";
-       $dbname    = "mydb2";
+       $dbname    = "procrastination";
        
        
       
@@ -49,14 +49,10 @@ else{
        $stmt = $conn->prepare($INSERT);
        $stmt->bind_param("ssssi", $firstname, $password, $gender, $email, $phone);
        $stmt ->execute();
-       //echo "New record inserted successfully";
-         //header("location: InsertToDatabaseNewRegisters.php");
-         echo '<script language="javascript">';
-         echo 'alert("New record inserted successfully")';
-         echo '</script>';
+        header("location: login.php");
         }
          else{
-              echo "Someone already registered";
+              echo "<li> Someone already registered </li>";
       } $stmt->close();
         $conn->close();
    

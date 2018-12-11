@@ -36,7 +36,7 @@ if(!empty($listTitle)){
             $stmt->bind_param("isss", $userID, $listTitle, $listDescription, $Visibility);
             $stmt->execute();
 
-            echo "New record inserted sucessfully";
+            header("location: home-page.php");
         } else {
             echo "This task already exist in the system";
         }

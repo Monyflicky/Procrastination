@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="../Styles/main.css">
@@ -56,10 +55,7 @@
         <div class="container" style="margin-top:30px" >
 
             <form action="insert.php" method="POST">
-
                 <div class="form-group">
-                  <input type='hidden' name='id' value="">
-
                   <label for="taskTitle">Title of the Task</label>
                   <input type="text" class="form-control" id="taskTitle" name="taskTitle" required>
                 </div>
@@ -74,28 +70,32 @@
                   <select class="custom-select mr-sm-2" id="listTitle" name="listTitle">
                     <option selected hidden value="">Choose...</option>
                     <?php
-                        include("session.php");
-                        $userID = $_SESSION['userID'];
-                        //echo "<option selected >Choose...</option>";
-                        $conn = mysqli_connect("localhost", "root", "", "procrastination");
-                        // Check connection
-                        if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                        } 
-                        $sql = "SELECT userID, listTitle From createlist";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                        // output data of each row
-                        while($row = $result->fetch_assoc()) {
-                          //echo('<option>'.$userID.'</option>');
-                            if ($row['userID'] == $userID){
-                              echo('<option value="'.$row['listTitle'].' ">'.$row['listTitle'].'</option>');
-                            }
-                            //echo ("<option value= " '. $row['listTitle']. ' ">" . $row["listTitle"]. "</option>");
-                            
-                        }
-                        $result->close();
-                        $conn->close();
+                      include("session.php");
+                      $userID = $_SESSION['userID'];
+
+                      
+                      $conn = mysqli_connect("localhost", "root", "", "procrastination");
+
+                      // Check connection
+                      if ($conn->connect_error) {
+                      die("Connection failed: " . $conn->connect_error);
+                      } 
+                      $sql = "SELECT userID, listTitle From createlist";
+                      $result = $conn->query($sql);
+                      if ($result->num_rows > 0) {
+
+                      // output data of each row
+                      while($row = $result->fetch_assoc()) {
+                          echo ('<option >'.$userID.'</option>');
+                          if ($row['userID'] == $userID){
+                            echo('<option value="'.$row['listTitle'].' ">'.$row['listTitle'].'</option>');
+                          }
+                          //echo ("<option value= " '. $row['listTitle']. ' ">" . $row["listTitle"]. "</option>");
+                          
+                      }
+                    }
+                      //$result->close();
+                      $conn->close();
                     ?>
                   </select>
                 </div>
@@ -112,20 +112,9 @@
                   </div>
                 </div>
 
-                <div class="form-group">
-                    <label >Frequency: </label>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="onceCheckbox" name="Frequency" value="o" data-toggle="collapse" data-target="#dueDate">
-                    <label class="form-check-label" for="inlineCheckbox1">Once</label>
-                  </div>
-                  <!--
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="recurrentCheckbox" name="Frequency" value="r" >
-                    <label class="form-check-label" for="inlineCheckbox2">Recurrent</label>
-                  </div>-->
-                </div>
+              
 
-                <div class="form-group form-inline collapse" id="dueDate">
+                <div class="form-group form-inline" id="dueDate">
                     <label for="inputDate" class="pr-2">Due Date:</label>
                       <input type="date" id="inputDate" class="form-control" aria-describedby="dueDateHelpInline" name="dueDate">
                 </div>
@@ -144,6 +133,7 @@
                 <br>
             </form>
         </div>
+        <div> </div>
 
   </body>
 </html>

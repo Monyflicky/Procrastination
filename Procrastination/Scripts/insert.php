@@ -20,7 +20,7 @@ $taskTitle = $_POST['taskTitle'];
 $taskDescription = $_POST['taskDescription'];
 $listTitle = $_POST['listTitle'];
 $Visibility = $_POST['Visibility'];
-$Frequency = $_POST['Frequency'];
+//$Frequency = $_POST['Frequency'];
 $dueDate = $_POST['dueDate'];
 $priorityLVL =$_POST['priorityLVL'];
 $userID = $_SESSION['userID'];
@@ -40,7 +40,7 @@ if(!empty($taskTitle)){
     } else {
         $SELECT = "SELECT taskTitle From createtask Where taskTitle = ? Limit 1";
         $INSERT = "INSERT Into createtask (userID, taskTitle, taskDescription, listTitle, Visibility, 
-            Frequency, dueDate, priorityLVL) values(?, ?, ?, ?, ?, ?, ?, ?)";
+            dueDate, priorityLVL) values(?, ?, ?, ?, ?, ?, ?)";
 
         //Prepare statement
         $stmt = $conn->prepare($SELECT);
@@ -54,8 +54,7 @@ if(!empty($taskTitle)){
             $stmt->close();
 
             $stmt = $conn->prepare($INSERT);
-            $stmt->bind_param("isssssss", $userID, $taskTitle, $taskDescription, $listTitle, $Visibility, 
-            $Frequency, $dueDate, $priorityLVL);
+            $stmt->bind_param("issssss", $userID, $taskTitle, $taskDescription, $listTitle, $Visibility, $dueDate, $priorityLVL);
             $stmt->execute();
 
             $sql= "SELECT  createlist.listTitle, createtask.taskTitle, createtask.priorityLVL 
