@@ -129,8 +129,8 @@ else{
             <p >
                     <form action = " " method="POST">
                             <div class="form-group">
-                               <label for="firstname">First</label>
-                               <input type="text" class="form-control" id="firstname" placeholder="Enter firstname" name="firstname" required>
+                               <label for="firstname">Username</label>
+                               <input type="text" class="form-control" id="firstname" placeholder="Enter Username" name="firstname" required>
                             </div>
                             <div class="form-group">
                                <label for="password">Password</label>
