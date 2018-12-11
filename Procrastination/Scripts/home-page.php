@@ -11,11 +11,13 @@
 * {
     box-sizing: border-box;
 }
+
 /* Style the body */
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
+
 /* Header/logo Title */
 .header { 
     padding: 50px;
@@ -23,10 +25,12 @@ body {
     background: #72bbed;
     color: white;
 }  
+
 /* Increase the font size of the heading */
 .header h1 {
     font-size: 50px;
 }
+
 /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
 .sidenav{
     height: 100%;
@@ -40,6 +44,7 @@ body {
     transition: 0.35s;
     padding-top: 40px;
 }
+
 /* Style the navigation bar links */
 .sidenav a {
     padding: 8px 8px 8px 28px;
@@ -49,10 +54,12 @@ body {
     display: block;
     transition: 0.3s;
 }
+
 /* Change colour on hover */
 .sidenav a:hover {
     color: #f1f1f1;
 }
+
 /* Close sidebar */
 .sidenav .closebtn{
     position: absolute;
@@ -61,6 +68,7 @@ body {
     font-size: 34px;
     margin-left: 40px;
 }
+
 /* Column container */
 .row {  
     display: -ms-flexbox; /* IE10 */
@@ -68,30 +76,36 @@ body {
     -ms-flex-wrap: wrap; /* IE10 */
     flex-wrap: wrap;
 }
+
 /* Main */
 .main {   
     flex: 80%;
     background-color: white;
     padding: 20px;
 }
+
 /* Fake image, just for this example */
 .fakeimg {
     background-color: #aaa;
     width: 100%;
     padding: 20px;
 }
+
 /* Footer */
 .footer {
     padding: 20px;
     text-align: center;
-    background: #ddd;
+    background: #72bbed;
+    color: white;
 }
+
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
     .row {   
         flex-direction: column;
     }
 }
+
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
     .navbar a {
@@ -115,40 +129,49 @@ body {
     <div id = "homeSideNav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">Home</a>
-        <a href="list.html">Lists</a>
+        <a href="list.php">Lists</a>
         <!-- <a href="#">Create New TO-DO List</a> -->
-        <a href="task.html">Generate New Task</a>
-        <a href="#">Generate a Schedule</a>
+        <a href="task.php">Generate New Task</a>
+        <a href="pickSchedule.php">Generate a Schedule</a>
         <a href="#">Userboard</a>
-        <a href="indexComments.php">Comment Section</a>
-        <a href="logout.php">Sign Out</a>
+        <a href="#">Sign Out</a>
     </div>
 
   <div class="main">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
+      <p id="quote"></p>
       <div class="fakeimg" style="height:200px;">Image</div>
       <p>Some text..
         <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum  
       </p>
-
-      <br>
-
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-  </div>
+  </div>    
 
 <div class="footer">
   <h2>Footer</h2>
 </div>
 
 <script>
+    //Display a random motivational quote
+    function randomtext() {   
+        var randomtxt = [
+            '<h1><b><i>"One day you will wake up and there won\'t be any more time to do the things you\'ve always wanted... Do it now."</i></b></h1> <h4>- Paulo Coelho</h4>',
+            '<h1><b><i>"It always seems impossible until it\'s done."</i></b></h1> <h4>- Nelson Mandela</h4>',
+            '<h1><b><i>"It does not matter how slowly you go as long as you do not stop."</i></b></h1> <h4>- Confucius</h4>',
+            '<h1><b><i>"The secret of getting ahead is getting started."</i></b></h1> <h4>- Mark Twain</h4>',
+            '<h1><b>"Without hard work, nothing grows but weeds."</i></b></h1> <h4>- Gordon B. Hinckley</h4>',
+            '<h1><b><i>"What you do today can improve all your tomorrows."</i></b></h1> <h4>- Ralph Marston</h4>',
+            '<h1><b><i>"In order to succeed, we must first believe that we can."</i></b></h1> <h4>- Nicos Kazantzakis</h4>',
+            '<h1><b><i>"You may delay, but time will not, and lost time is never found again."</i></b></h1> <h4>- Benjamin Franklin</h4>',
+            '<h1><b><i>"Things may come to those who wait, but only the things left by those who hustle."</i></b></h1> <h4>- Abraham Lincoln</h4>',
+            '<h1><b><i>"Tomorrow is often the busiest day of the week."</i></b></h1> <h4>- Spanish Proverb</h4>'];
+        return randomtxt[Math.floor((Math.random() * 9.99))];
+    }
+    
+    document.getElementById("quote").innerHTML = randomtext();
+    
     function openNav() {
         document.getElementById("homeSideNav").style.width = "250px";
     }
+
     function closeNav() {
         document.getElementById("homeSideNav").style.width = "0";
     }
