@@ -138,8 +138,9 @@ body {
     </div>
 
   <div class="main">
-      <p id="quote"></p>
+      <p id="quote"></p> 
       <h2>You have the following tasks coming up:</h2>
+      
       <?php
         //include("session.php");
         $host = "localhost"; 
@@ -151,17 +152,18 @@ body {
         //create connection
         $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 
-		  $sql= "SELECT taskTitle, dueDate 
-	     FROM createtask 
-		  ORDER BY dueDate";   
+		$sql= "SELECT taskTitle, dueDate 
+		FROM createtask 
+        ORDER BY dueDate
+        LIMIT 0,5";   
 
         $result = $conn->query($sql);
         
-        while($row = $result->fetch_assoc()){
-                echo "<h4>" . $row['taskTitle'] . " is due on " . $row['dueDate'] . "</i> </h4><br>"; 
+		while($row = $result->fetch_assoc()){
+                echo "<h4>" . $row['taskTitle'] . " is due on " . $row['dueDate'] . ".</h4><br>"; 
         }
-        ?>
-  </div>    
+    ?>
+  </div> 	  
 
 <script>
     //Display a random motivational quote
