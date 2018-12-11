@@ -118,8 +118,8 @@ body {
 <body>
 
     <div class="header">
-        <h1>Welcome <?php echo $login_session; ?></h1>
-        <h1>Task Manager for Procrastinators</h1>
+        <h2>Welcome <?php echo $login_session; ?></h2>
+        <h2>Task Manager for Procrastinators</h2>
         <p><b>Version 1.0</b> created by Ginika, Monnie, and Priscilia.</p>
     </div> 
 
@@ -139,27 +139,44 @@ body {
 
   <div class="main">
       <p id="quote"></p>
-      <div class="fakeimg" style="height:200px;">Image</div>
       <h2>You have the following tasks coming up:</h2>
-      <p>Some text..
-        <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum  
-      </p>
+      <?php
+        //include("session.php");
+        $host = "localhost"; 
+        $dbUsername = "root";
+        $dbPassword = "";
+        $dbname = "procrastination";
+        $userID = $_SESSION['userID'];
+  
+        //create connection
+        $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+
+		  $sql= "SELECT taskTitle, dueDate 
+	     FROM createtask 
+		  ORDER BY dueDate";   
+
+        $result = $conn->query($sql);
+        
+        while($row = $result->fetch_assoc()){
+                echo "<h4>" . $row['taskTitle'] . " is due on " . $row['dueDate'] . "</i> </h4><br>"; 
+        }
+        ?>
   </div>    
 
 <script>
     //Display a random motivational quote
     function randomtext() {   
         var randomtxt = [
-            '<h1><b><i>"One day you will wake up and there won\'t be any more time to do the things you\'ve always wanted... Do it now."</i></b></h1> <h4>- Paulo Coelho</h4>',
-            '<h1><b><i>"It always seems impossible until it\'s done."</i></b></h1> <h4>- Nelson Mandela</h4>',
-            '<h1><b><i>"It does not matter how slowly you go as long as you do not stop."</i></b></h1> <h4>- Confucius</h4>',
-            '<h1><b><i>"The secret of getting ahead is getting started."</i></b></h1> <h4>- Mark Twain</h4>',
-            '<h1><b>"Without hard work, nothing grows but weeds."</i></b></h1> <h4>- Gordon B. Hinckley</h4>',
-            '<h1><b><i>"What you do today can improve all your tomorrows."</i></b></h1> <h4>- Ralph Marston</h4>',
-            '<h1><b><i>"In order to succeed, we must first believe that we can."</i></b></h1> <h4>- Nicos Kazantzakis</h4>',
-            '<h1><b><i>"You may delay, but time will not, and lost time is never found again."</i></b></h1> <h4>- Benjamin Franklin</h4>',
-            '<h1><b><i>"Things may come to those who wait, but only the things left by those who hustle."</i></b></h1> <h4>- Abraham Lincoln</h4>',
-            '<h1><b><i>"Tomorrow is often the busiest day of the week."</i></b></h1> <h4>- Spanish Proverb</h4>'];
+            '<h3><b><i>"One day you will wake up and there won\'t be any more time to do the things you\'ve always wanted... Do it now."</i></b></h3> <h4>- Paulo Coelho</h4>',
+            '<h3><b><i>"It always seems impossible until it\'s done."</i></b></h3> <h4>- Nelson Mandela</h4>',
+            '<h3><b><i>"It does not matter how slowly you go as long as you do not stop."</i></b></h3> <h4>- Confucius</h4>',
+            '<h3><b><i>"The secret of getting ahead is getting started."</i></b></h3> <h4>- Mark Twain</h4>',
+            '<h3><b>"Without hard work, nothing grows but weeds."</i></b></h3> <h4>- Gordon B. Hinckley</h4>',
+            '<h3><b><i>"What you do today can improve all your tomorrows."</i></b></h3> <h4>- Ralph Marston</h4>',
+            '<h3><b><i>"In order to succeed, we must first believe that we can."</i></b></h3> <h4>- Nicos Kazantzakis</h4>',
+            '<h3><b><i>"You may delay, but time will not, and lost time is never found again."</i></b></h3> <h4>- Benjamin Franklin</h4>',
+            '<h3><b><i>"Things may come to those who wait, but only the things left by those who hustle."</i></b></h3> <h4>- Abraham Lincoln</h4>',
+            '<h3><b><i>"Tomorrow is often the busiest day of the week."</i></b></h3> <h4>- Spanish Proverb</h4>'];
         return randomtxt[Math.floor((Math.random() * 9.99))];
     }
     
