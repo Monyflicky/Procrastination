@@ -134,7 +134,7 @@ else{
                             </div>
                             <div class="form-group">
                                <label for="password">Password</label>
-                             <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required><br>
+                            <input type="password" pattern=".{4,10}" class="form-control" id="password" placeholder="Enter password" name="password" required><br>
                             </div>
                  
                            <div class="checkbox">
