@@ -137,19 +137,12 @@ else{
                             <input type="password" pattern=".{4,10}" class="form-control" id="password" placeholder="Enter password" name="password" required><br>
                             </div>
                  
-                           <div class="checkbox">
-                              <label><input type="radio" id="gender" name="gender" value="m" checked required>Male</label>
-                             <label><input type="radio" id="gender" name="gender" value="f" required>Female</label>
-                           </div>
-                 
+                           
                            <div class="form-group">
                              <label for="email">Email</label>
                              <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" required>
                           </div>
-                          <div class="form-group">
-                             <label for="telephone">PhoneNumber</label>
-                             <input type="text" class="form-control" id="phone" placeholder="Enter phonenumber" name="phone" required>
-                         </div>
+                          
                             <input type="submit" class="btn btn-default" name="submit" value="Submit">
                        </form>
             </p>
