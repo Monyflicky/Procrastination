@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                   <label for="listTitle">Choose a List</label>
-                  <button type="submit" class="btn btn-outline-secondary btn-sm float-right" onclick= "window.location = '../createList.html'">create a List</button>
+                  <button type="submit" class="btn btn-outline-secondary btn-sm float-right" onclick= "window.location = 'createList.html'">create a List</button>
                   <select class="custom-select mr-sm-2" id="listTitle" name="listTitle" required>
                     <option selected hidden value="">Choose...</option>
                     <?php

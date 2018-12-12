@@ -2,7 +2,15 @@
 <html>
 <head>
 	<title>List</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../Styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/mainStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="myScript.js"></script> 
 	<link rel="stylesheet" type="text/css" href="../Styles/todos.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
@@ -10,6 +18,11 @@
     
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<button type="return" class="btn btn-secondary mx-2" onclick="location.href='home-page.php';" > &#8592; Back to Home Page  </button>
+<button type="return" class="btn btn-secondary mx-5" onclick="location.href='createList.html';" > New List </button>
+<button type="return" class="btn btn-secondary mx-2" onclick="location.href='task.php';" > New task </button>
+</nav>
 
 <div class="grid-container">
 
@@ -25,6 +38,9 @@
 
         $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 
+        $RemoveOld = "DELETE FROM createtask WHERE createtask.dueDate < date('Y-m-d')";
+        $conn->query($RemoveOld);
+ 
         $stack = array();
         
 
@@ -65,7 +81,7 @@
                 
             }
 
-            echo "<li><span><i class='fa fa-trash' value=". $row['taskTitle'] ."></i></span>" . $row['taskTitle'] ."</li>";
+            echo "<li style='padding-left: 20px;'>" . $row['taskTitle'] ."</li>";
 
         }
 
@@ -119,6 +135,7 @@
     });
 
     $(".fa-trash").click(function(){
+
 	window.location = "list.php";
     });
 
