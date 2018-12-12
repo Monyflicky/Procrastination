@@ -16,7 +16,7 @@
        $host = "localhost";
        $dbFirstname = "root";
        $dbPassword = "";
-       $dbname    = "mydb2";
+       $dbname    = "procrastination";
        
        
       
