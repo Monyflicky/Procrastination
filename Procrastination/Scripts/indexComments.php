@@ -24,7 +24,7 @@
       <style type = "text/css">
       body{
            padding-top: 110px;
-           padding-bottom: 20px;
+           padding-bottom: 50px;
            width: 100%;
            height: 100%;
       }
