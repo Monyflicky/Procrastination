@@ -13,8 +13,8 @@
 <h1 style="text-transform: capitalize;">Enter the list name to generate a schedule:<i class='fa fa-plus'></i> </h1>
 
 <form action="buildSched.php" method="POST">
-    <input type="text" id="taskT" name="taskT" placeholder="Enter list name here">
-    <input type="submit" value="Submit" style="text-transform: capitalize; font-size:24px;">
+    <input type="text" id="taskT" name="taskT">
+    <input type="submit" value="Submit">
 </form>   
  
 <div class="grid-container">

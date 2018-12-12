@@ -57,49 +57,15 @@ if(!empty($taskTitle)){
             $stmt->bind_param("issssss", $userID, $taskTitle, $taskDescription, $listTitle, $Visibility, $dueDate, $priorityLVL);
             $stmt->execute();
 
-            $sql= "SELECT  createlist.listTitle, createtask.taskTitle, createtask.priorityLVL 
-            From createtask 
-            INNER JOIN createlist 
-            ON createtask.listTitle=createlist.listTitle
-            ORDER BY createtask.listTitle";
-
-            $result = $conn->query($sql);
-
-            echo"<table>
-
-            <tr>
-
-            <th>EmpId</th>
-
-            <th>Firstname</th>
-
-            <th>DeptName</th>
-
-            </tr>";
-
-            while($row = $result->fetch_assoc())
-
-            {
-
-            echo "<tr>";
-
-            echo "<td>" . $row['listTitle'] . "</td>";
-
-            echo "<td>" . $row['taskTitle'] . "</td>";
-
-            echo "<td>" . $row['priorityLVL'] . "</td>";
-
-            echo "</tr>";
-
-            
-
-            }
-
-            echo "</table>";
+            header("location: list.php");
 
 
         } else {
-            echo "This task already exist in the system";
+            echo " <link rel='stylesheet' type='text/css' href='../Styles/mainStyle.css'>
+                <script>
+                    alert('This task, " .$taskTitle.  " , already exist in the system');
+                    window.location.href='task.php';
+                </script>";
         }
 
         $stmt->close();

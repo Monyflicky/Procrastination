@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="../Styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/mainStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -14,50 +15,29 @@
   </head>
   <body>
 
-      <div class="jumbotron jumbotron-fluid text-center" style="margin-bottom:0">
+      <div class="container text-center mx-auto p-5 bg-white mt-5"  >
         <div class="container"> 
-          <h1> Procrastination </h1>
+          <h1> Procrasti- NOT </h1>
           <blockquote class="blockquote mb-0">
             <p>"Never put off till tomorrow what may be done day after tomorrow just as well."</p>
-            <footer class="blockquote-footer">Mark Twain in <cite title="Source Title">Source Title</cite></footer>
+            <footer class="blockquote-footer">Mark Twain </footer>
           </blockquote>
         </div>
-      </div>
+      </div> 
 
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <a class="navbar-brand" href="#" id="icon">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>    
-          </ul>
+        <div class="container mx-auto p-5 bg-white mb-5" >
 
-            <!--Search box to search user ?-->
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>  
-       </nav>
-
-
-
-        <div class="container" style="margin-top:30px" >
-
-            <form action="insert.php" method="POST">
+            <form action="insert.php" method="POST" class="needs-validation" id="myForm" novalidate>
                 <div class="form-group">
                   <label for="taskTitle">Title of the Task</label>
-                  <input type="text" class="form-control" id="taskTitle" name="taskTitle" required>
+                  <input type="text" class="form-control" id="taskTitle" name="taskTitle" pattern="[A-Za-z0-9\s]+" maxlength="25" required>
+                  <small id="passwordHelpBlock" class="form-text text-muted">
+                      Your title must be less than 25 characters long and must not contain special characters, or emoji.
+                    </small>
+                  <div class="invalid-feedback">
+                    Please choose a valid title for the task.
+                  </div>
+
                 </div>
                 <div class="form-group">
                   <label for="taskDescription">Description of the Task</label>
@@ -67,7 +47,7 @@
                 <div class="form-group">
                   <label for="listTitle">Choose a List</label>
                   <button type="submit" class="btn btn-outline-secondary btn-sm float-right" onclick= "window.location = '../createList.html'">create a List</button>
-                  <select class="custom-select mr-sm-2" id="listTitle" name="listTitle">
+                  <select class="custom-select mr-sm-2" id="listTitle" name="listTitle" required>
                     <option selected hidden value="">Choose...</option>
                     <?php
                       include("session.php");
@@ -86,7 +66,6 @@
 
                       // output data of each row
                       while($row = $result->fetch_assoc()) {
-                          echo ('<option >'.$userID.'</option>');
                           if ($row['userID'] == $userID){
                             echo('<option value="'.$row['listTitle'].' ">'.$row['listTitle'].'</option>');
                           }
@@ -102,26 +81,30 @@
 
                 <div class="form-group">
                     <label >Visibility: </label>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="publicCheckbox" name="Visibility" value="pub" >
-                    <label class="form-check-label" for="inlineCheckbox1">Public</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="privateCheckbox" name="Visibility" value="pri" >
-                    <label class="form-check-label" for="inlineCheckbox2">Private</label>
-                  </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="publicRadio" name="Visibility" value="pub" class="custom-control-input" required>
+                        <label class="custom-control-label" for="publicRadio">Public</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="privateRadio" name="Visibility" value="pri" class="custom-control-input" required>
+                      <label class="custom-control-label" for="privateRadio">Private</label>
+                    </div>
                 </div>
 
               
 
                 <div class="form-group form-inline" id="dueDate">
                     <label for="inputDate" class="pr-2">Due Date:</label>
-                      <input type="date" id="inputDate" class="form-control" aria-describedby="dueDateHelpInline" name="dueDate">
+                      <input type="date" id="inputDate" class="form-control" aria-describedby="dueDateHelpInline" name="dueDate"  min=
+                        <?php
+                          echo date('Y-m-d');
+                        ?>
+                      required>
                 </div>
 
                 <div class="form-group">
                     <label for="priorityLevel">Priority</label>
-                    <select class="custom-select mr-sm-2" id="priorityLevel" name="priorityLVL">
+                    <select class="custom-select mr-sm-2" id="priorityLevel" name="priorityLVL" required>
                       <option selected hidden value="">Choose...</option>
                       <option value="l">Low</option>
                       <option value="m">Medium</option>
@@ -129,11 +112,36 @@
                     </select>
                 </div>
 
+                <button type="return" class="btn btn-secondary float-left" onclick="event.preventDefault(); resetForm();" > &#8592; Back to Home Page  </button>
+
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
                 <br>
             </form>
         </div>
-        <div> </div>
+        <script>
+          function resetForm() {
+              document.getElementById("myForm").reset();
+              location.href='home-page.php';
+          }
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+              'use strict';
+              window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                  form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                  }, false);
+                });
+              }, false);
+            })();
+          </script>
 
   </body>
 </html>

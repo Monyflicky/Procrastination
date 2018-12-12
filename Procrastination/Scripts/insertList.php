@@ -36,9 +36,13 @@ if(!empty($listTitle)){
             $stmt->bind_param("isss", $userID, $listTitle, $listDescription, $Visibility);
             $stmt->execute();
 
-            header("location: home-page.php");
+            header("location: list.php");
         } else {
-            echo "This task already exist in the system";
+            echo " <link rel='stylesheet' type='text/css' href='../Styles/mainStyle.css'>
+            <script>
+                alert('This list, " .$listTitle.  " , already exist in the system');
+                window.location.href='../createList.htm';
+            </script>";
         }
 
         $stmt->close();
