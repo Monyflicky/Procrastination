@@ -11,7 +11,6 @@
       $myusername = mysqli_real_escape_string($db,$firstname);
       $mypassword = mysqli_real_escape_string($db,$password); 
       $mypassword = md5($mypassword);
-      echo $mypassword;
       
       $sql = "SELECT * FROM register WHERE username = '$myusername' and password = '$mypassword'";
       $result = mysqli_query($db,$sql);
@@ -44,7 +43,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Log In</title>
+    <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -86,7 +85,7 @@
          <div class="navbar-collapse collapse">
              <ul class="nav navbar-nav navbar-right">
                  <li class="active"><a href="register.php">Register</a></li>
-                 <li class="active"><a href="logout.php">Sign Out</a></li>
+                 
              </ul>
 
          </div>
