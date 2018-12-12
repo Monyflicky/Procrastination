@@ -4,19 +4,19 @@
 
     $firstname = $_POST['firstname'];
     $password = md5($_POST['password']);
-    $gender = $_POST['gender'];
+    
     $email = $_POST['email'];
-    $phone = $_POST['phone'];
+   
 
     //$firstname = mysqli_real_escape_string($db,$firstname);
     //$password = mysqli_real_escape_string($db,$password); 
    // $password = md5($password);
 
-   if(!empty($firstname) || !empty($password) || !empty($gender) || !empty($email) || !empty($phone)){
+   if(!empty($firstname) || !empty($password) || !empty($email) ){
        $host = "localhost";
        $dbFirstname = "root";
        $dbPassword = "";
-       $dbname    = "procrastination";
+       $dbname    = "mydb2";
        
        
       
@@ -32,7 +32,7 @@ else{
          die('Connect_Error('.mysqli_connect_errno().')'.mysqli_connect());
     }else{
          $SELECT = "SELECT email From register Where email = ? Limit 1";
-         $INSERT = "INSERT Into register (username, password, gender, email, phone) VALUES(?,?,?,?,?)";
+         $INSERT = "INSERT Into register (username, password, email) VALUES(?,?,?)";
 
 
        $stmt = $conn->prepare($SELECT);
@@ -47,12 +47,14 @@ else{
 
 
        $stmt = $conn->prepare($INSERT);
-       $stmt->bind_param("ssssi", $firstname, $password, $gender, $email, $phone);
+       $stmt->bind_param("sss", $firstname, $password, $email);
        $stmt ->execute();
-        header("location: login.php");
+       //echo "New record inserted successfully";
+         header("location: login.php");
+         
         }
          else{
-              echo "<li> Someone already registered </li>";
+              echo "Someone already registered";
       } $stmt->close();
         $conn->close();
    
@@ -89,8 +91,8 @@ else{
               
           }
           form{
-              width: 20%;
-              display: inline-block;
+            
+              
             }
       </style>
     
@@ -123,35 +125,53 @@ else{
         
          <div class="page-header">
             <p >
-                    <form action = " " method="POST">
+                    <form class="form-horizontal" action = " " method="POST" id="reg_form">
                             <div class="form-group">
-                               <label for="firstname">First</label>
-                               <input type="text" class="form-control" id="firstname" placeholder="Enter firstname" name="firstname" required>
+                               <label class="col-md-4 control-label" for="firstname">Username</label>
+                               <div class="col-xs-6 inputGroupContainer">
+                                   <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                     <input type="text" class="form-control" id="firstname" placeholder="Enter username" name="firstname" required/>
+                                   </div>
+                            </div>
                             </div>
                             <div class="form-group">
-                               <label for="password">Password</label>
-                             <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required><br>
-                            </div>
-                 
-                           <div class="checkbox">
-                              <label><input type="radio" id="gender" name="gender" value="m" checked required>Male</label>
-                             <label><input type="radio" id="gender" name="gender" value="f" required>Female</label>
-                           </div>
-                 
-                           <div class="form-group">
-                             <label for="email">Email</label>
-                             <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" required>
-                          </div>
+                               <label class="col-md-4 control-label" for="password">Password</label>
+                                  <div class="col-xs-6 inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                       <input type="password" pattern=".{5,10}" class="form-control" id="password" placeholder="Enter password" name="password"
+                                       required/><br>
+                                    </div>
+                                   </div>
+                                  </div>
+                        
+
                           <div class="form-group">
-                             <label for="telephone">PhoneNumber</label>
-                             <input type="text" class="form-control" id="phone" placeholder="Enter phonenumber" name="phone" required>
-                         </div>
-                            <input type="submit" class="btn btn-default" name="submit" value="Submit">
+                               <label class="col-md-4 control-label" for="email">Email</label>
+                                  <div class="col-xs-6 inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" required/>
+                                    </div>
+                                   </div>
+                                  </div>
+
+                        <div class="form-group">
+                               <label class="col-md-4 control-label" for="email"></label>
+                                  <div class="col-xs-4">
+                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="submit" class="btn btn-warning" name="submit" value="Submit">
+                                    </div>
+                                   </div>
+                                  </div>
+                          
+                            
                        </form>
             </p>
          </div>
     </div>
-     <!--This is the footer-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+
      <div class="navbar navbar-inverse navbar-fixed-bottom" style="background-color: #AAAAAA;">
         <div class="container">
             <div class="navbar-text pull-left">
