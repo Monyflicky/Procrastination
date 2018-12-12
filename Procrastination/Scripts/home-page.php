@@ -4,8 +4,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page Title</title>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {
@@ -16,6 +21,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+    transition: background-color .5s;
 }
 
 /* Header/logo Title */
@@ -84,19 +90,29 @@ body {
     padding: 20px;
 }
 
-/* Fake image, just for this example */
-.fakeimg {
-    background-color: #aaa;
-    width: 100%;
-    padding: 20px;
-}
+/* Borders for text */
+.border {
+    display: inline-block;
+    width: 95%;
+    height: 150px;
+    margin: 16px;
+} 
 
 /* Footer */
 .footer {
-    padding: 20px;
-    text-align: center;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    font-size: 15px;
+    padding: 17px;
+    text-align: right;
     background: #72bbed;
     color: white;
+} 
+
+#mainScreen {
+    transition: margin-left .5s;
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
@@ -117,13 +133,12 @@ body {
 </head>
 <body>
 
+    <div id="mainScreen">
     <div class="header">
         <h1>Welcome <?php echo $login_session; ?></h1>
-        <h1>Task Manager for Procrastinators</h1>
-        <p><b>Version 1.0</b> created by Ginika, Monnie, and Priscilia.</p>
     </div> 
 
-    <span style="font-size:37px;cursor:pointer" onclick="openNav()">&#9776; Menu
+    <span style="font-size:37px;cursor:pointer" onclick="openNav()">&#9776; Navigate
     </span>
 
     <div id = "homeSideNav" class="sidenav">
@@ -138,52 +153,57 @@ body {
     </div>
 
    <div class="main">
-      <p id="quote"></p> 
-      <h2>You have the following tasks coming up:</h2>
+      <span class="border border-primary" style="text-align:center;padding: 20px;"><p id="quote"></p></span> 
       
-      <?php
-        $host = "localhost"; 
-        $dbUsername = "root";
-        $dbPassword = "";
-        $dbname = "procrastination";
-        $ID = $_SESSION['userID'];
-  
-        //create connection
-        $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
-
-		$sql= "SELECT userID, taskTitle, dueDate 
-		FROM createtask
-        WHERE createtask.userID = $ID 
-        ORDER BY dueDate ASC 
-        LIMIT 0,5";   
-
-        $result = $conn->query($sql);
+      <span class="border border-primary" style="text-align:left;padding: 20px;height: 230px;">
+      <h3>You have the following tasks coming up:</h3>
         
-		while($row = $result->fetch_assoc()){
-        
-                echo "<h4>" . $row['taskTitle'] . " is due on " . $row['dueDate'] . "</i> </h4>"; 
-        }
-    ?>
-  </div>  
+        <?php
+            $host = "localhost"; 
+            $dbUsername = "root";
+            $dbPassword = "";
+            $dbname = "procrastination";
+            $ID = $_SESSION['userID'];
+    
+            //create connection
+            $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+
+            $sql= "SELECT userID, taskTitle, dueDate 
+            FROM createtask
+            WHERE createtask.userID = $ID 
+            ORDER BY dueDate ASC 
+            LIMIT 0,5";   
+
+            $result = $conn->query($sql);
+            
+            while($row = $result->fetch_assoc()){
+            
+                    echo "<h5>" . $row['taskTitle'] . " is due on " . $row['dueDate'] . "</i> </h5>"; 
+            }
+        ?>
+        </span> 
+
+  </div> 
+  </div>
 
 <div class="footer">
-  <h2>Footer</h2>
+    <p><b>Version 1.0</b> created by Ginika, Monnie, and Priscilia.</p> 
 </div>
 
 <script>
     //Display a random motivational quote
     function randomtext() {   
         var randomtxt = [
-            '<h1><b><i>"One day you will wake up and there won\'t be any more time to do the things you\'ve always wanted... Do it now."</i></b></h1> <h4>- Paulo Coelho</h4>',
-            '<h1><b><i>"It always seems impossible until it\'s done."</i></b></h1> <h4>- Nelson Mandela</h4>',
-            '<h1><b><i>"It does not matter how slowly you go as long as you do not stop."</i></b></h1> <h4>- Confucius</h4>',
-            '<h1><b><i>"The secret of getting ahead is getting started."</i></b></h1> <h4>- Mark Twain</h4>',
-            '<h1><b>"Without hard work, nothing grows but weeds."</i></b></h1> <h4>- Gordon B. Hinckley</h4>',
-            '<h1><b><i>"What you do today can improve all your tomorrows."</i></b></h1> <h4>- Ralph Marston</h4>',
-            '<h1><b><i>"In order to succeed, we must first believe that we can."</i></b></h1> <h4>- Nicos Kazantzakis</h4>',
-            '<h1><b><i>"You may delay, but time will not, and lost time is never found again."</i></b></h1> <h4>- Benjamin Franklin</h4>',
-            '<h1><b><i>"Things may come to those who wait, but only the things left by those who hustle."</i></b></h1> <h4>- Abraham Lincoln</h4>',
-            '<h1><b><i>"Tomorrow is often the busiest day of the week."</i></b></h1> <h4>- Spanish Proverb</h4>'];
+            '<h2><b><i>"One day you will wake up and there won\'t be any more time to do the things you\'ve always wanted... Do it now."</i></b></h2> <h4>- Paulo Coelho</h4>',
+            '<h2><b><i>"It always seems impossible until it\'s done."</i></b></h2> <h4>- Nelson Mandela</h4>',
+            '<h2><b><i>"It does not matter how slowly you go as long as you do not stop."</i></b></h2> <h4>- Confucius</h4>',
+            '<h2><b><i>"The secret of getting ahead is getting started."</i></b></h2> <h4>- Mark Twain</h4>',
+            '<h2><b>"Without hard work, nothing grows but weeds."</i></b></h2> <h4>- Gordon B. Hinckley</h4>',
+            '<h2><b><i>"What you do today can improve all your tomorrows."</i></b></h2> <h4>- Ralph Marston</h4>',
+            '<h2><b><i>"In order to succeed, we must first believe that we can."</i></b></h2> <h4>- Nicos Kazantzakis</h4>',
+            '<h2><b><i>"You may delay, but time will not, and lost time is never found again."</i></b></h2> <h4>- Benjamin Franklin</h4>',
+            '<h2><b><i>"Things may come to those who wait, but only the things left by those who hustle."</i></b></h2> <h4>- Abraham Lincoln</h4>',
+            '<h2><b><i>"Tomorrow is often the busiest day of the week."</i></b></h2> <h4>- Spanish Proverb</h4>'];
         return randomtxt[Math.floor((Math.random() * 9.99))];
     }
     
@@ -191,11 +211,23 @@ body {
     
     function openNav() {
         document.getElementById("homeSideNav").style.width = "250px";
+        document.getElementById("mainScreen").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.5)";
     }
 
     function closeNav() {
         document.getElementById("homeSideNav").style.width = "0";
+        document.getElementById("mainScreen").style.marginLeft= "0";
+        document.body.style.backgroundColor = "white";
     }
+
+    /*function openNav() {
+        document.getElementById("homeSideNav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("homeSideNav").style.width = "0";
+    }*/
 </script>
 
 
