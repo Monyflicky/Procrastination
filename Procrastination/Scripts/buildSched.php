@@ -7,6 +7,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 
 <style>
+    .table tbody tr > td.success {
+  background-color: #dff0d8 !important;
+}
+/*
 table.calendar {
     margin-bottom: 0;
 }
@@ -35,9 +39,9 @@ table.calendar > tbody > tr > td.has-events {
     border-radius: 4px;
 }
 
-table.calendar > tbody > tr > td.has-events > div {
+table.calendar > tbody > tr > td.primary > div {
     background-color: #08C;
-    border-left: 1px solid white;
+    //border-left: 1px solid white;
 }
 
 table.calendar > tbody > tr > td.has-events > div:first-child {
@@ -74,7 +78,7 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 
 .table tbody tr.hover td, .table tbody tr.hover th {
     background-color: whiteSmoke;
-}
+} */
 </style>
 </head>
 <body>
@@ -149,7 +153,7 @@ echo "<tr>";
 echo "<td>". $time ."</td>"; 
 for($x=0;$x<7;$x++){ //Output data in each row
     if(($row = $result->fetch_assoc())!=NULL){
-        echo "<td class=\" has-events\" rowspan=\"1\"><div class=\"row-fluid lecture\" style=\"width: 99%; height: 100%; padding:4px;\">";
+        echo "<td class=\" table-primary text-center\" rowspan=\"1\"><div class=\"row-fluid lecture\" style=\"width: 99%; height: 100%; padding:4px;\">";
         echo "<span class=\"title\">" . $row["taskTitle"] . "</span> <span class=\"lecturer\"><a>" . $row["priorityLVL"] . "</a></span></div></td>";  
     }else{
         echo "<td class=\" no-events\" rowspan=\"1\"></td>";
