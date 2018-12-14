@@ -1,3 +1,6 @@
+<?php
+    include("session.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +30,6 @@
 <div class="grid-container">
 
     <?php
-    include("session.php");
         $host = "localhost"; 
         $dbUsername = "root";
         $dbPassword = "";

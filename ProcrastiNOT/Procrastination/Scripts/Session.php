@@ -9,6 +9,7 @@
    
    if(!(isset($_SESSION['login_user']) && isset($_SESSION['password']))){
     include("login.php");
+    exit();
  }
    else{
     $myusername=$_SESSION['login_user'];

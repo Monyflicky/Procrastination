@@ -1,6 +1,9 @@
 <?php
-   session_start();
-   include("Config.php");
+   if(!isset($_SESSION)) 
+   { 
+      session_start(); 
+   } 
+   //include("Config.php");
    $error='';
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,7 +14,7 @@
       $myusername = mysqli_real_escape_string($db,$firstname);
       $mypassword = mysqli_real_escape_string($db,$password); 
       $mypassword = md5($mypassword);
-      
+      echo $mypassword;
       
       $sql = "SELECT * FROM register WHERE username = '$myusername' and password = '$mypassword'";
       $result = mysqli_query($db,$sql);
@@ -28,7 +31,7 @@
 		
       if($count == 1) {
         $_SESSION['login_user'] = $row['username']; 
-	$_SESSION["password"] = $row['password'];
+	     $_SESSION["password"] = $row['password'];
         
          //header("location: welcome.php");
            header("location: home-page.php");
@@ -85,7 +88,7 @@
              <h1 class="navbar-brand">You are welcomed to Log In below<h1>
          <div class="navbar-collapse collapse">
              <ul class="nav navbar-nav navbar-right">
-                 <li class="active"><a href="register.php">Register</a></li>
+                 <li class="active s"><a href="register.php">Register</a></li>
                  <li class="active"><a href="logout.php">Sign Out</a></li>
              </ul>
 
@@ -106,7 +109,7 @@
                                <div style = "margin:30px">
                                   
                                   <form action = "" method = "post">
-                                     <label>FirstName  :</label><input type = "text" name = "firstname" class = "box"/><br /><br />
+                                     <label>Username  :</label><input type = "text" name = "firstname" class = "box"/><br /><br />
                                      <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
                                      <input type = "submit" value = " Submit "/><br />
                                   </form>
