@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_destroy();
+session_destroy();  
 ?>
 
 <!DOCTYPE html>
@@ -75,5 +75,13 @@ session_destroy();
         </div>
      </div>
     
-  </body>
+  </body> 
+
+<script type = "text/javascript" >
+    history.pushState(null, null, '');
+    window.addEventListener('popstate', function(event) {
+        history.pushState(null, null, '');
+        });
+</script>
+
 </html>
