@@ -1,9 +1,9 @@
 <?php
-   if(!isset($_SESSION)) 
-   { 
-      session_start(); 
-   } 
-   //include("Config.php");
+   //session_start();
+   if(!isset($_SESSION)){
+     //session_start();
+     include("Config.php");
+   }
    $error='';
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +14,7 @@
       $myusername = mysqli_real_escape_string($db,$firstname);
       $mypassword = mysqli_real_escape_string($db,$password); 
       $mypassword = md5($mypassword);
-      echo $mypassword;
+      
       
       $sql = "SELECT * FROM register WHERE username = '$myusername' and password = '$mypassword'";
       $result = mysqli_query($db,$sql);
@@ -31,9 +31,10 @@
 		
       if($count == 1) {
         $_SESSION['login_user'] = $row['username']; 
-	     $_SESSION["password"] = $row['password'];
+        $_SESSION["password"] = $row['password'];
         
-         //header("location: welcome.php");
+        $_SESSION['status']="Active";
+         //header("location: welcome.php"); 
            header("location: home-page.php");
       }else {
          $error = "Your Login Name or Password is invalid";
@@ -85,10 +86,10 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
              </button>
-             <h1 class="navbar-brand">You are welcomed to Log In below<h1>
-         <div class="navbar-collapse collapse">
+             <h1 class="navbar-brand">You are welcome to Log In below<h1>
+         <div class="navbar-collapse collapse"> 
              <ul class="nav navbar-nav navbar-right">
-                 <li class="active s"><a href="register.php">Register</a></li>
+                 <li class="active"><a href="register.php">Register</a></li>
                  <li class="active"><a href="logout.php">Sign Out</a></li>
              </ul>
 
