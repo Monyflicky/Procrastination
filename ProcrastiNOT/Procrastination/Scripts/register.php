@@ -16,7 +16,7 @@
        $host = "localhost";
        $dbFirstname = "root";
        $dbPassword = "";
-       $dbname    = "mydb2";
+       $dbname    = "procrastination";
        
        
       
@@ -50,7 +50,10 @@ else{
        $stmt->bind_param("sss", $firstname, $password, $email);
        $stmt ->execute();
        //echo "New record inserted successfully";
-         header("location: login.php");
+         //echo "<script type='text/javascript'>alert('New record inserted successfully! Please go ahead click Log In');</script>";
+         //echo " <script> w </script>"
+         echo "<script>alert('Your Record Sucessfully Inserted.Now Login');window.location.href = 'login.php';</script>";
+         //header("location: login.php");
          
         }
          else{
@@ -136,9 +139,10 @@ else{
                             </div>
                             <div class="form-group">
                                <label class="col-md-4 control-label" for="password">Password</label>
-                                 <h6>User password must be between 5 to 10 characters</h6>
                                   <div class="col-xs-6 inputGroupContainer">
+                                  <h6>Password is between 5 to 10 characters</h6>
                                     <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        
                                        <input type="password" pattern=".{5,10}" class="form-control" id="password" placeholder="Enter password" name="password"
                                        required/><br>
                                     </div>
@@ -182,3 +186,4 @@ else{
      </div>
     
   </body>
+</html>
