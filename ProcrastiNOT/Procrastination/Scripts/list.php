@@ -89,7 +89,7 @@
 
             $string = str_replace(' ', '-', $row['taskTitle']);
 
-            echo "<li> <span><i class='fa fa-trash task' id= " . $row['taskID'] . " value= ' $string ' ></i></span> " . $row['taskTitle'] ."</li>";
+            echo "<li > <span><i class='fa fa-trash task' id= " . $row['taskID'] . " value= ' $string ' ></i></span> " . $row['taskTitle'] ."</li>";
 
         }
 
@@ -129,6 +129,8 @@
 	
 </div>
 <script >
+    
+
     $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
     });
@@ -148,7 +150,7 @@
                     type: "post",
                     data: {task: value} ,
                     success: function (response) {
-                        response = "<strong>Info!</strong> "+response + title + ", was sucessfully deleted.";
+                        response = response + title + ", was sucessfully deleted.";
                         //$("#deleteTask").html(response);
                         alert(response);
                         //$("#warning").removeClass("d-none");
