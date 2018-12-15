@@ -29,26 +29,26 @@ function getComments($db){
            echo $row['date']."<br>";
            echo $row['message'];
          echo "</p>
-      <div style='display:inline-block;'>
-      <form class='reply-form' method='POST' action='replycomment.php'>
+      
+      <form class='reply-form' style='display:inline-block;' method='POST' action='replycomment.php'>
          <input type='hidden' name='id' value='".$row['id']."'>
          <input type='hidden' name='firstname' value='".$row['username']."'>
          <input type='hidden' name='date' value='".$row['date']."'>
          <input type='hidden' name='message' value='".$row['message']."'>
       <button>Reply</button>
       </form>
-      <form class='delete-form' method='POST' action='".deleteComments($db)."'>
+      <form class='delete-form' style='display:inline-block;' method='POST' action='".deleteComments($db)."'>
          <input type='hidden' name='id' value='".$row['id']."'>
          <button type='submit' name='commentDelete'>Delete</button>
        </form>
-		     <form class='edit-form' method='POST' action='editcomment.php'>
+		     <form class='edit-form' style='display:inline-block;' method='POST' action='editcomment.php'>
 			      <input type='hidden' name='id' value='".$row['id']."'>
 			      <input type='hidden' name='firstname' value='".$row['username']."'>
 			      <input type='hidden' name='date' value='".$row['date']."'>
 			      <input type='hidden' name='message' value='".$row['message']."'>
 			<button>Edit</button>
     </form>
-    </div>
+    
     </div>";
          getReplies($db);
      }
