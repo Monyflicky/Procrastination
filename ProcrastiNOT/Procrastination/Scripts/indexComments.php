@@ -58,26 +58,18 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-xs-12">
-         <?php
-          
-         echo "<form role='form' class='col-xs-6'>
-            
-               <div class='form-group'>
-                 <input type='hidden' class='form-control' id='firstname'  name='firstname' required>
-                </div>
-                <div class='form-group'>
-                  <input type='hidden' class='form-control' id='".date('Y-m-d H:i:S')."' name='date' required>
-                </div>
+         
+             <?php
+             echo "<form method='POST' class='col-xs-6' action='".setComments($db)."'>
+   	            <input type='hidden' name='firstname' value='firstname'>
+   	            <input type='hidden' name='date' value='".date('Y-m-d H:i:S')."'>
                 <div class='form-group form-group-lg'>
-                    <input type='text' class='form-control' id='comment' placeholder='Post Comment' name='comment'>
+                    <input type='text' class='form-control' id='message' placeholder='Post Comment' name='message'>
                 </div>
-                <div class='form-group'>
-                   <input type='submit' class='btn btn-default' name='commentSubmit' value='Submit'>
-                </div>
-             
-		 </form>";
-		 getComments($db);
-         ?>
+   	            <button name='commentSubmit' type='submit'>Comment</button>
+                </form>";
+                getComments($db);
+            ?>
          
                 
                   

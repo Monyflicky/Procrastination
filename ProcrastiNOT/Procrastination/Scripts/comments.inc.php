@@ -4,19 +4,24 @@ include("session.php");
 
 function setComments($db) {
   if(isset($_POST['commentSubmit'])){
+    
       $firstname = $_SESSION['login_user'];
       $date = $_POST['date'];
       $message = $_POST['message'];
      
-        
-
-
-     $sql = "INSERT INTO comment (username,date,message) VALUES('$firstname','$date','$message')";
-     $result= mysqli_query($db,$sql);
+    if(!empty($firstname) || !empty($date) || !empty($message)){
+      $sql = "INSERT INTO comment (username,date,message) VALUES('$firstname','$date','$message')";
+      $result= mysqli_query($db,$sql);
+    }
+    else{
+        echo "Some of the data is empty!";
+    }
   }
 }
 
 function getComments($db){
+
+  
     $sql="SELECT * FROM comment";
     $result= mysqli_query($db,$sql);
     
