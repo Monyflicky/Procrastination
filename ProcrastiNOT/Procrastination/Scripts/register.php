@@ -138,6 +138,7 @@ else{
                                <label class="col-md-4 control-label" for="password">Password</label>
                                   <div class="col-xs-6 inputGroupContainer">
                                     <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <h6>Password is between 5 to 10 characters</h6>
                                        <input type="password" pattern=".{5,10}" class="form-control" id="password" placeholder="Enter password" name="password"
                                        required/><br>
                                     </div>
