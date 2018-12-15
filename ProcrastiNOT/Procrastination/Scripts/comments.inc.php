@@ -118,17 +118,6 @@ function getReplies($db){
          <input type='hidden' name='message' value='".$row['replied_message']."'>
       <button>Reply</button>
       </form>
-      <form class='delete-form' style='display: inline;float: right;margin-right: 5px;' method='POST' action='".deleteComments($db)."'>
-         <input type='hidden' name='id' value='".$row['rid']."'>
-         <button type='submit' name='replyDelete'>Delete</button>
-       </form>
-		     <form class='edit-form' style='display: inline;float: right;margin-right: 5px;' method='POST' action='editcomment.php'>
-			      <input type='hidden' name='id' value='".$row['rid']."'>
-			      <input type='hidden' name='firstname' value='".$row['username']."'>
-			      <input type='hidden' name='date' value='".$row['time_updated']."'>
-			      <input type='hidden' name='message' value='".$row['replied_message']."'>
-			<button>Edit</button>
-    </form>
       </div>";
     }
 }
