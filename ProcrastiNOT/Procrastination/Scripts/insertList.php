@@ -19,13 +19,15 @@ if(!empty($listTitle)){
     if (mysqli_connect_error()) {
         die('Connect Error ('. mysqli_connect_errno().')'. mysqli_connect_error());
     } else {
-        $SELECT = "SELECT listTitle From createlist Where listTitle = ? Limit 1";
+
+        $SELECT = "SELECT listTitle, userID FROM createlist WHERE userID = $userID AND listTitle = ? LIMIT 1";
         $INSERT = "INSERT Into createlist (userID, listTitle, listDescription, Visibility) values(?, ?, ?, ?)";
         //Prepare statement
+        $a = 0;
         $stmt = $conn->prepare($SELECT);
-        $stmt->bind_param("s", $listTitle);
+        $stmt->bind_param("s",$listTitle);
         $stmt->execute();
-        $stmt->bind_result($listTitle);
+        $stmt->bind_result($userID, $listTitle);
         $stmt->store_result();
         $rnum = $stmt->num_rows;
 

@@ -11,21 +11,25 @@
     <link rel="stylesheet" type="text/css" href="../Styles/main.css">
     <link rel="stylesheet" type="text/css" href="../Styles/mainStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="myScript.js"></script> 
 	<link rel="stylesheet" type="text/css" href="../Styles/todos.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
-    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+    
     
 </head>
 <body>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<button type="return" class="btn btn-secondary mx-2" onclick="location.href='home-page.php';" > &#8592; Back to Home Page  </button>
-<button type="return" class="btn btn-secondary mx-5" onclick="location.href='createList.html';" > New List </button>
-<button type="return" class="btn btn-secondary mx-2" onclick="location.href='task.php';" > New task </button>
+    <button type="button" class="btn btn-secondary mx-2" onclick="location.href='home-page.php';" > &#8592; Back to Home Page  </button>
+    <button type="button" class="btn btn-primary mx-5" onclick="location.href='task.php';" > New task </button>
+    <button type="button" class="btn btn-warning mx-1" onclick="location.href='createList.html';" > New List </button>
 </nav>
+
+
 
 <div class="grid-container">
 
@@ -46,14 +50,13 @@
         $stack = array();
         
 
-		$sql= "SELECT  createlist.listTitle, createtask.taskTitle, createtask.priorityLVL, createtask.dueDate 
+		$sql= "SELECT  createlist.listTitle, createtask.taskTitle, createtask.priorityLVL, createtask.taskID, createtask.dueDate 
 		From createtask 
 		INNER JOIN createlist 
 		ON createtask.listTitle =createlist.listTitle
         AND createlist.userID = $userID
+        AND createtask.userID = $userID
         ORDER BY createlist.listTitle";
-        //createtask.listTitle =createlist.listTitle
-        //AND 
 
 
 
@@ -65,6 +68,7 @@
 		while($row = $result->fetch_assoc())
 
 		{
+            
 
             if ($Title != $row['listTitle'] ){
 
@@ -83,16 +87,13 @@
                 
             }
 
-            echo "<li style='padding-left: 20px;'>" . $row['taskTitle'] ."</li>";
+            $string = str_replace(' ', '-', $row['taskTitle']);
+
+            echo "<li> <span><i class='fa fa-trash task' id= " . $row['taskID'] . " value= ' $string ' ></i></span> " . $row['taskTitle'] ."</li>";
 
         }
 
-        $sql2= "SELECT  createlist.listTitle, createtask.taskTitle
-		From createtask 
-		INNER JOIN createlist 
-		ON createlist.listTitle !=createtask.listTitle
-        AND createlist.userID = $userID
-        ORDER BY createlist.listTitle";
+        $sql2= "SELECT  listTitle From createlist Where userID = $userID ORDER BY listTitle";
 
 
 
@@ -100,7 +101,7 @@
         
 
 
-		while($row = $result->fetch_assoc())
+        while($row = $result->fetch_assoc())
 
 		{
 
@@ -133,16 +134,58 @@
     });
 
     $(".fa-plus").click(function(){
-	window.location = "task.php";
+	    window.location = "task.php";
     });
 
-    $(".fa-trash").click(function(){
+    $(".task").click(function(event){
+        var temp = $(this).attr('value');
+        var title = temp.replace(/[-]/gi," ");
+        var value = $(this).attr('id'); 
+        var del = confirm("Are you sure you want to delete the task: "+ title + " ?");
+            if (del == true) {
+                $.ajax({
+                    url: "deleteTask.php",
+                    type: "post",
+                    data: {task: value} ,
+                    success: function (response) {
+                        response = "<strong>Info!</strong> "+response + title + ", was sucessfully deleted.";
+                        //$("#deleteTask").html(response);
+                        alert(response);
+                        //$("#warning").removeClass("d-none");
+                        //$("#DeleteTask").html(response);
+                        //document.getElementByClass("alert-info").style.display = "inline";
+                        
+                    // you will get response from your php page (what you echo or print)                 
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                    }
+
+
+                });
+            
+                $(this).parent().parent().fadeOut(function(){
+                    $(this).remove();
+                });
+        }
+        
+        event.stopPropagation();
+        $
+    });
+
+    function hideAlert(){
+        ("#warning").addClass("d-none");
+    }
+
+    /*$(".fa-trash").click(function(){
 
 	window.location = "list.php";
-    });
+    });*/
 
 
 </script>
+
 
 
 </body>

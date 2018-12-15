@@ -38,15 +38,16 @@ if(!empty($taskTitle)){
     if (mysqli_connect_error()) {
         die('Connect Error ('. mysqli_connect_errno().')'. mysqli_connect_error());
     } else {
-        $SELECT = "SELECT taskTitle From createtask Where taskTitle = ? Limit 1";
+        $SELECT = "SELECT taskTitle, userID From createtask WHERE userID = $userID AND taskTitle = ? Limit 1";
         $INSERT = "INSERT Into createtask (userID, taskTitle, taskDescription, listTitle, Visibility, 
             dueDate, priorityLVL) values(?, ?, ?, ?, ?, ?, ?)";
 
         //Prepare statement
+        $Id = 0;
         $stmt = $conn->prepare($SELECT);
         $stmt->bind_param("s", $taskTitle);
         $stmt->execute();
-        $stmt->bind_result($taskTitle);
+        $stmt->bind_result($taskTitle, $Id);
         $stmt->store_result();
         $rnum = $stmt->num_rows;
 
