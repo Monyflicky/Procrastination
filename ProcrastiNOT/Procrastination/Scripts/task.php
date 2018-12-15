@@ -95,7 +95,7 @@
 
                 <div class="form-group form-inline" id="dueDate">
                     <label for="inputDate" class="pr-2">Due Date:</label>
-                      <input type="date" id="inputDate" class="form-control" aria-describedby="dueDateHelpInline" name="dueDate"  min=
+                      <input type="date" id="inputDate" class="form-control" aria-describedby="dueDateHelpInline" placeholder="Date" name="dueDate"  min=
                         <?php
                           echo date('Y-m-d');
                         ?>
