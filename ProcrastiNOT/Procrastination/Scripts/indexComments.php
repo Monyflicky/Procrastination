@@ -24,7 +24,7 @@
       <style type = "text/css">
       body{
            padding-top: 110px;
-           padding-bottom: 50px;
+           padding-bottom: 20px;
            width: 100%;
            height: 100%;
       }
@@ -58,18 +58,26 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-xs-12">
-         
-             <?php
-             echo "<form method='POST' class='col-xs-6' action='".setComments($db)."'>
-   	            <input type='hidden' name='firstname' value='firstname'>
-   	            <input type='hidden' name='date' value='".date('Y-m-d H:i:S')."'>
-                <div class='form-group form-group-lg'>
-                    <input type='text' class='form-control' id='message' placeholder='Post Comment' name='message'>
+         <?php
+          
+         echo "<form role='form' class='col-xs-6'>
+            
+               <div class='form-group'>
+                 <input type='hidden' class='form-control' id='firstname'  name='firstname' required>
                 </div>
-   	            <button name='commentSubmit' type='submit'>Comment</button>
-                </form>";
-                getComments($db);
-            ?>
+                <div class='form-group'>
+                  <input type='hidden' class='form-control' id='".date('Y-m-d H:i:S')."' name='date' required>
+                </div>
+                <div class='form-group form-group-lg'>
+                    <input type='text' class='form-control' id='comment' placeholder='Post Comment' name='comment'>
+                </div>
+                <div class='form-group'>
+                   <input type='submit' class='btn btn-default' name='commentSubmit' value='Submit'>
+                </div>
+             
+		 </form>";
+		 getComments($db);
+         ?>
          
                 
                   

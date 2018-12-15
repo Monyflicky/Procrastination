@@ -137,8 +137,7 @@ else{
                             <div class="form-group">
                                <label class="col-md-4 control-label" for="password">Password</label>
                                   <div class="col-xs-6 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <h6>Password is between 5 to 10 characters</h6>
+                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                        <input type="password" pattern=".{5,10}" class="form-control" id="password" placeholder="Enter password" name="password"
                                        required/><br>
                                     </div>
@@ -149,18 +148,18 @@ else{
                           <div class="form-group">
                                <label class="col-md-4 control-label" for="email">Email</label>
                                   <div class="col-xs-6 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" required/>
                                     </div>
                                    </div>
                                   </div>
 
                         <div class="form-group">
-                               
-                                  <div class="col-md-12">
-                                    
+                               <label class="col-md-4 control-label" for="email"></label>
+                                  <div class="col-xs-4">
+                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input type="submit" class="btn btn-warning" name="submit" value="Submit">
-                                    
+                                    </div>
                                    </div>
                                   </div>
                           

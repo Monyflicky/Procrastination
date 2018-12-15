@@ -4,24 +4,19 @@ include("session.php");
 
 function setComments($db) {
   if(isset($_POST['commentSubmit'])){
-    
       $firstname = $_SESSION['login_user'];
       $date = $_POST['date'];
       $message = $_POST['message'];
      
-    if(!empty($firstname) || !empty($date) || !empty($message)){
-      $sql = "INSERT INTO comment (username,date,message) VALUES('$firstname','$date','$message')";
-      $result= mysqli_query($db,$sql);
-    }
-    else{
-        echo "Some of the data is empty!";
-    }
+        
+
+
+     $sql = "INSERT INTO comment (username,date,message) VALUES('$firstname','$date','$message')";
+     $result= mysqli_query($db,$sql);
   }
 }
 
 function getComments($db){
-
-  
     $sql="SELECT * FROM comment";
     $result= mysqli_query($db,$sql);
     
@@ -34,26 +29,26 @@ function getComments($db){
            echo $row['date']."<br>";
            echo $row['message'];
          echo "</p>
-      
-      <form class='reply-form' style='display: inline;float: right;' method='POST' action='replycomment.php'>
+      <div style='display:inline-block;'>
+      <form class='reply-form' method='POST' action='replycomment.php'>
          <input type='hidden' name='id' value='".$row['id']."'>
          <input type='hidden' name='firstname' value='".$row['username']."'>
          <input type='hidden' name='date' value='".$row['date']."'>
          <input type='hidden' name='message' value='".$row['message']."'>
       <button>Reply</button>
       </form>
-      <form class='delete-form' style='display: inline;float: right;margin-right: 5px;' method='POST' action='".deleteComments($db)."'>
+      <form class='delete-form' method='POST' action='".deleteComments($db)."'>
          <input type='hidden' name='id' value='".$row['id']."'>
          <button type='submit' name='commentDelete'>Delete</button>
        </form>
-		     <form class='edit-form' style='display: inline;float: right;margin-right: 5px;' method='POST' action='editcomment.php'>
+		     <form class='edit-form' method='POST' action='editcomment.php'>
 			      <input type='hidden' name='id' value='".$row['id']."'>
 			      <input type='hidden' name='firstname' value='".$row['username']."'>
 			      <input type='hidden' name='date' value='".$row['date']."'>
 			      <input type='hidden' name='message' value='".$row['message']."'>
 			<button>Edit</button>
     </form>
-    
+    </div>
     </div>";
          getReplies($db);
      }
@@ -106,23 +101,13 @@ function getReplies($db){
     $result= mysqli_query($db,$sql);
 
     while($row = $result->fetch_assoc()){
-      echo "<div class='well col-xs-6 col-sm-offset-1'><p>";
+      echo "<div><p class='well col-xs-6 col-sm-offset-1'>";
         echo $row['username']."<br>";
         echo $row['time_updated']."<br>";
         echo $row['replied_message'];
-      echo "</p>
-      <form class='reply-form' style='display: inline;float: right;' method='POST' action='replycomment.php'>
-         <input type='hidden' name='id' value='".$row['rid']."'>
-         <input type='hidden' name='firstname' value='".$row['username']."'>
-         <input type='hidden' name='date' value='".$row['time_updated']."'>
-         <input type='hidden' name='message' value='".$row['replied_message']."'>
-      <button>Reply</button>
-      </form>
-      </div>";
+      echo "</p></div>";
     }
 }
-
-
 
 
 
